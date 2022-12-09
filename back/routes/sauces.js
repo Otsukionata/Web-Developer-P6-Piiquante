@@ -5,7 +5,7 @@ const sauceCtrl = require("../controllers/sauces");
 
 const router = express.Router();
 
-router.post("/", authenticator, sauceCtrl.createSauces);
 router.get("/", authenticator, sauceCtrl.getAllSauces);
+router.post("/", authenticator, multer, sauceCtrl.createSauce);
 
 module.exports = router;
