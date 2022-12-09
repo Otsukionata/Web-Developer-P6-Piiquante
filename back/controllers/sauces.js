@@ -1,5 +1,7 @@
+// Import du modèle de création de nouvelle sauce
 const Sauce = require("../models/Sauce");
 
+// Fonction de création de sauce
 exports.createSauce = (req, res, next) => {
   const sauceObj = JSON.parse(req.body.sauce);
   delete req.body._userId;
