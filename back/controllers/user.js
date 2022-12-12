@@ -1,16 +1,24 @@
 // Dépendances
 const bcrypt = require("bcrypt");
 const jwtokn = require("jsonwebtoken");
+const cryptoJs = require("crypto-js");
 
 // Import du modèle de fichier pour new user
 const User = require("../models/User");
 
 // Inscription
 exports.signup = (req, res, next) => {
+  // Chiffrement de l'adresse mail avec crypto-Js
+  const encryptMail = cryptoJs.HmacSHA256(
+    req.body.email,
+    `${process.env.CRYPTO_MAIL}`
+  );
+
+  // Chiffrement du mot de passe avec bcrypt
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
-      const user = new User({ email: req.body.email, password: hash });
+      const user = new User({ email: encryptMail, password: hash });
       user
         .save()
         .then(() =>
@@ -23,7 +31,12 @@ exports.signup = (req, res, next) => {
 
 // Identification
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email })
+  const encryptMail = cryptoJs.HmacSHA256(
+    req.body.email,
+    `${process.env.CRYPTO_MAIL}`
+  );
+
+  User.findOne({ email: encryptMail })
     .then((user) => {
       if (user === null) {
         res

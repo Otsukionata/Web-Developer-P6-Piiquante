@@ -13,12 +13,14 @@ const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, "images");
   },
-  // Renommage de l'image prenant en compte le nom d'origine et ajoutant la date en millisecondes
+  // Renommage de l'image prenant en compte le nom d'origine
+  // Règles de renommage : Remplacement des espaces par l'underscore, le retrait/déplacement de l'extension avec le point afin d'ajouter la date en millisecondes
   filename: (req, file, callback) => {
     const name = file.originalname
       .split(" ")
       .join("_")
-      .replace(MIME_TYPE[file.mimetype], "");
+      .replace(MIME_TYPE[file.mimetype], "")
+      .replace(".", "");
     const extension = MIME_TYPE[file.mimetype];
     callback(null, name + "_" + Date.now() + "." + extension);
   },
