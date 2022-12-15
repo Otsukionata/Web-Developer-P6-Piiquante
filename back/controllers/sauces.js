@@ -1,12 +1,15 @@
 // Import du modèle de création de nouvelle sauce
 const Sauce = require("../models/Sauce");
 
+// Dépendance pour la suppression de fichiers (ici : images)
 const fs = require("fs");
 
 // Fonction de création de sauce
 exports.createSauce = (req, res, next) => {
   const sauceObj = JSON.parse(req.body.sauce);
   delete req.body._userId;
+
+  // Affectation d'une URL à l'image nouvellement créée
   const sauce = new Sauce({
     ...sauceObj,
     userId: req.auth.userId,
@@ -14,6 +17,7 @@ exports.createSauce = (req, res, next) => {
       req.file.filename
     }`,
   });
+  // Sauvegarde de la sauce ou erreur le cas échéant
   sauce
     .save()
     .then(() => res.status(201).json({ message: "Objet enregistré !" }))

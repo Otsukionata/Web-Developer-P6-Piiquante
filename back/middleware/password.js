@@ -4,7 +4,7 @@ const PasswordSchema = new PasswordValidator();
 
 /* Configuration des points de contrôle
 Le mot de passe ne doit contenir aucun espace
-Symboles acceptés : [~#*-_=+±%`"',;.!?|@<({^/\&§})>€$£¥₹] */
+Symboles acceptés : [~#*-_=+±%`"',;.!?|@<({^/\&§})>€$£¥₹] ainsi que les caractères accentués */
 
 PasswordSchema
     .is().min(8, ["Minimum 8 caractères"])

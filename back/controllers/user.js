@@ -1,13 +1,14 @@
-// Dépendances
-const bcrypt = require("bcrypt");
+// Dépendances de cryptage
 const jwtokn = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const cryptoJs = require("crypto-js");
 
 // Import du modèle de fichier pour new user
 const User = require("../models/User");
 
-// Inscription
+// Inscription de nouvel user
 exports.signup = (req, res, next) => {
+
   // Chiffrement de l'adresse mail avec crypto-Js
   const encryptMail = cryptoJs.HmacSHA256(
     req.body.email,
