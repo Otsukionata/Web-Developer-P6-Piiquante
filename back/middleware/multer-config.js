@@ -1,6 +1,6 @@
 const multer = require("multer");
 
-// Création du dictionnaire d'extensions des formats d'images acceptés par el site
+// Création du dictionnaire d'extensions des formats d'images acceptés par le site
 const MIME_TYPE = {
   "image/jpg": "jpg",
   "image/jpeg": "jpg",

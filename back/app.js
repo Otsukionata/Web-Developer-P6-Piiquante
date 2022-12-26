@@ -2,9 +2,11 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+
+// Démarrage d'Express
 const app = express();
 
-// Sécurisation de l'API
+// Dépendances de sécurisation de l'API
 const helmet = require("helmet");
 const rateLimit = require("./middleware/limiter");
 

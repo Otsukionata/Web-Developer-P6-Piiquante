@@ -16,7 +16,7 @@ router.get("/:id", authenticator, sauceCtrl.getSauceById);
 router.put("/:id", authenticator, multer, sauceCtrl.modifySauce);
 router.delete("/:id", authenticator, multer, sauceCtrl.deleteSauce);
 
-// Routes du système de like/dislike
+// Route du système de like/dislike
 router.post("/:id/like", authenticator, likeSauce);
 
 module.exports = router;
