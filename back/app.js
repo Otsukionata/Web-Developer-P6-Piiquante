@@ -19,6 +19,11 @@ const sauceRoutes = require("./routes/sauces");
 
 // Middleware
 app.use(helmet());
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Resource-Policy", "same-site");
+  next();
+});
+
 app.use("/api/", rateLimit.apiLimiter);
 app.use(cors());
 app.use(express.json());

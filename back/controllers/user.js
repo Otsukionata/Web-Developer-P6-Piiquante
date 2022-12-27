@@ -8,7 +8,6 @@ const User = require("../models/User");
 
 // Inscription de nouvel user
 exports.signup = (req, res, next) => {
-
   // Chiffrement de l'adresse mail avec crypto-Js
   const encryptMail = cryptoJs.HmacSHA256(
     req.body.email,
@@ -57,7 +56,7 @@ exports.login = (req, res, next) => {
                     userId: user._id,
                   },
                   process.env.JWT_TOKEN,
-                  { expiresIn: "24h" }
+                  { expiresIn: "3h" }
                 ),
               });
             }

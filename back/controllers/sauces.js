@@ -40,9 +40,18 @@ exports.getSauceById = (req, res, next) => {
 
 // Modification d'une sauce
 exports.modifySauce = (req, res, next) => {
-  Sauce.updateOne({ _id: res.params.id }, { ...req.body, _id: req.params.id })
-    .then(() => res.status(200).json({ message: "Sauce modifiée !" }))
-    .catch((error) => res.status(400).json({ error }));
+  Sauce.findOne({ _id: req.params.id }).then((sauce) => {
+    if (sauce.userId != req.auth.userId) {
+      res.status(401).json({ message: "Autorisation refusée !" });
+    } else {
+      Sauce.updateOne(
+        { _id: res.params.id },
+        { ...req.body, _id: req.params.id }
+      )
+        .then(() => res.status(200).json({ message: "Sauce modifiée !" }))
+        .catch((error) => res.status(400).json({ error }));
+    }
+  });
 };
 
 // Suppression d'une sauce
