@@ -5,10 +5,10 @@ Construction d'une API sécurisée pour une application d'avis gastronomiques
 
 ## Configuration de la variable d'environnement
 
-Afin d'obtenir une API fonctionnelle, créer un fichier nommé ".env" à la racine du site et coller toutes les entrées écrites en majuscule ainsi : VARIABLE = donnée sécurisée.
-Les caractères spéciaux sont acceptés pour tous les cryptages.
+Afin d'obtenir une API fonctionnelle, créer un fichier nommé ".env" à la racine du site et recopier toutes les entrées écrites en majuscule du modèle ci-dessous.
+Les caractères spéciaux [~#*-_=+±%`"',;.!?|@<({^/\&§})>€$£¥₹] et les lettres accentuées sont acceptées pour tous les cryptages.
 
-Nom de la variable à utiliser | Données personnalisées
+Nom de la variable à utiliser | Données à personnaliser
 
     DB_USER                   | Identifiant de l'user de la base de données
     DB_PASSWORD               | Mot de passe d'accès à la base de donnée Mongo
